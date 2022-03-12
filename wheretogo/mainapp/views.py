@@ -47,6 +47,7 @@ def user_login(request):
 					else:
 						return HttpResponse('Disabled account')
 				else:
+					# 
 					form = UserLoginForm()
 					context['form'] = form
 					return render(request, 'login.html', context)

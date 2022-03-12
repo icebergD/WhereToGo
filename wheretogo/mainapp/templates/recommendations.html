@@ -153,6 +153,12 @@ body {
 
 }
 
+.show-like {
+   position: absolute;
+   bottom: 10px;
+   display: none;
+}
+
 .fa p {
     font-size: 20px;
 }
@@ -172,6 +178,7 @@ body {
             <img src="https://via.placeholder.com/150/">
             <h3>Demo card 1</h3>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
+            
           </div>
           <div class="tinder--card">
             <img src="https://via.placeholder.com/150/">
@@ -193,9 +200,12 @@ body {
             <h3>Demo card 5</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, perferendis?</p>
           </div>
+
         </div>
       
-    
+    <div class="show-like">
+                <p>Мероприятие добавлено в избранное!</p>
+            </div>
       </div>
 <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
 <script>
@@ -206,15 +216,17 @@ body {
 
 var tinderContainer = document.querySelector('.tinder');
 var allCards = document.querySelectorAll('.tinder--card');
+var showLike = document.querySelector('.show-like');
 
 
-/// новый код
 allCards.forEach((el) => {
   el.ondblclick = function () {
-    
+  console.log('тест');
+  showLike.style.display ='block';
+  setTimeout("showLike.style.display ='none';", 2000);
 }
 })
-/// конец нового кода
+
 var nope = document.getElementById('nope');
 var love = document.getElementById('love');
 

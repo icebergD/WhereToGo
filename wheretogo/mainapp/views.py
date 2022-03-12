@@ -24,6 +24,14 @@ def BaseView(request):
 		'authed': authed,
 		'username': request.user	
 	}
+	if !authed:
+		return HttpResponseRedirect(reverse('login'))
+
+	return render(request,'base.html',context)
+
+def organization_detail(request):
+	
+	
 	return render(request,'base.html',context)
 
 
@@ -44,17 +52,20 @@ def user_login(request):
 					if user.is_active:
 						login(request, user)
 						return HttpResponseRedirect(reverse('base'))
-					else:
-						return HttpResponse('Disabled account')
 				else:
-					# 
+					
 					form = UserLoginForm()
 					context['form'] = form
 					return render(request, 'login.html', context)
+			else:
+				return HttpResponse('Not valid')
+		return HttpResponse('Account logged alredy')
 	else:
 		form = UserLoginForm()
 		context['form'] = form
+		return render(request, 'login.html', context)
 	return render(request, 'login.html', context)
+
 
 def user_register(request):
 	authed = request.user.is_authenticated

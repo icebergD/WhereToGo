@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}organization detail{% endblock %}
+{% block content %}
+    <img src="{{ organization_info.image.url }}"/>
+    <div>{{ organization_info.title }}</div>
+    <div>{{ organization_info.description }}</div>
+    <div>{{ organization_info.geo }}</div>
+    <div>{{ organization_info.price }} сум</div>
+    <div>время работы от {{ organization_info.time_start_work }} до {{ organization_info.time_stop_work }}</div>
+
+   
+{% endblock %}

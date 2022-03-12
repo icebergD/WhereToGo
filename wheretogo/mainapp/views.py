@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import DetailView, View, CreateView
+from django.views import generic
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -18,11 +19,6 @@ def hello(request):
 	return HttpResponse("Hello world")
 
 
-def BaseView(request):
-	
-
-	return render(request,'base.html',context)
-
 class BaseView(View):
 	def get(self, request, *args, **kwargs):
 		authed = request.user.is_authenticated
@@ -37,6 +33,14 @@ class BaseView(View):
 		return render(request,'base.html',context)
 
 
+class NewsView(View):
+	def get(self, request, *args, **kwargs):
+		new_list = Organization.objects.all().order_by('-creation_date')[:30]
+		context = {
+			'new_list': new_list,
+		}
+		return render(request,'news.html',context)
+
 
 class OrganizationDetailView(View):
 	def get(self, request, *args, **kwargs):
@@ -45,7 +49,7 @@ class OrganizationDetailView(View):
 		context = {
 			'organization_info': organization_info,
 		}
-		return render(request,'organization_detail.html',context)
+		return render(request,'card.html',context)
 
 
 

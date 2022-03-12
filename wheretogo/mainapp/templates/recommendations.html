@@ -164,7 +164,7 @@ body {
         <div class="tinder--status">
           <i class="fa fa-remove"><p>Не интересно</p></i>
           <i class="fa fa-check"><p>Интересно</p></i>
-          <i class="fa-solid fa-bookmark"></i>
+          <i class="fa fa-bookmark"></i>
         </div>
       
         <div class="tinder--cards">
@@ -206,8 +206,19 @@ body {
 
 var tinderContainer = document.querySelector('.tinder');
 var allCards = document.querySelectorAll('.tinder--card');
+
+
+/// новый код
+allCards.forEach((el) => {
+  el.ondblclick = function () {
+    
+}
+})
+/// конец нового кода
 var nope = document.getElementById('nope');
 var love = document.getElementById('love');
+
+
 
 function initCards(card, index) {
   var newCards = document.querySelectorAll('.tinder--card:not(.removed)');

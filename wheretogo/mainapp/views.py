@@ -24,6 +24,14 @@ def BaseView(request):
 		'authed': authed,
 		'username': request.user	
 	}
+	if !authed:
+		return HttpResponseRedirect(reverse('login'))
+
+	return render(request,'base.html',context)
+
+def organization_detail(request):
+	
+	
 	return render(request,'base.html',context)
 
 

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}news{% endblock %}
+{% block content %}
+<!-- начало контента -->
+
+    {% for nl in new_list %}
+
+        <!-- начало карточки -->
+        <a href="{% url 'organization_detail' slug=nl.slug %}">link</a>
+        <img width="100px" height="100px" src="{{ nl.image.url }}"/>
+        <div>{{ nl.title }}</div>
+        <div>{{ nl.description }}</div>
+        <div>{{ nl.geo }}</div>
+        <div>{{ nl.price }} сум</div>
+        <div>время работы от {{ nl.time_start_work }} до {{ nl.time_stop_work }}</div>
+        <!-- конец карточки -->
+
+    {% endfor %}
+
+<!-- конец контента -->
+{% endblock %}

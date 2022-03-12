@@ -12,27 +12,41 @@ from django.contrib import messages
 from django.core import serializers
 
 from .forms import UserLoginForm, UserRegistrationForm
-
+from .models import Organization, Like, OrganizationHashtag, UserHashtag
 
 def hello(request):
 	return HttpResponse("Hello world")
 
 
 def BaseView(request):
-	authed = request.user.is_authenticated
-	context = {
-		'authed': authed,
-		'username': request.user	
-	}
-	if !authed:
-		return HttpResponseRedirect(reverse('login'))
+	
 
 	return render(request,'base.html',context)
 
-def organization_detail(request):
-	
-	
-	return render(request,'base.html',context)
+class BaseView(View):
+	def get(self, request, *args, **kwargs):
+		authed = request.user.is_authenticated
+		context = {
+			'authed': authed,
+			'username': request.user	
+		}
+		if authed!=True:
+			return HttpResponseRedirect(reverse('login'))
+
+		# код для свайпа
+		return render(request,'base.html',context)
+
+
+
+class OrganizationDetailView(View):
+	def get(self, request, *args, **kwargs):
+		organization_info = Organization.objects.get(slug=kwargs['slug'])
+
+		context = {
+			'organization_info': organization_info,
+		}
+		return render(request,'organization_detail.html',context)
+
 
 
 def user_login(request):

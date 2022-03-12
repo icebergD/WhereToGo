@@ -37,7 +37,7 @@
 
                <!-- котент -->
 
-
+hi
 
 
                <!-- котент -->
@@ -70,68 +70,3 @@
 
 
 
-
-<!-- 
-
-<script type="text/javascript">
-
-            $(document).ready(function(){
-
-
-                function getCookie(name) {
-                    var cookieValue = null;
-                    if (document.cookie && document.cookie != '') {
-                        var cookies = document.cookie.split(';');
-                        for (var i = 0; i < cookies.length; i++) {
-                            var cookie = jQuery.trim(cookies[i]);
-                            // Does this cookie string begin with the name we want?
-                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                break;
-                            }
-                        }
-                    }
-                    return cookieValue;
-                }
-                var csrftoken = getCookie('csrftoken');
-
-                function updateMessages(){
-                    // создаем AJAX-вызов
-                    $.ajax({
-                        data: {'csrfmiddlewaretoken' : csrftoken },
-                        method: "POST",
-                        // dataType: 'json',
-                        url: "{% url 'update_message' %}",
-                        // если успешно, то
-                        success: function (response) {
-                            $(".chat-container").html('');
-                            var data = response.response;
-
-                            for (var i = data.length-1; i >= 0; i--) {
-                                var chat_el = "<div class='pt-3'><span class='text-black-50'>"+data[i]['username']+" </span>"+data[i]['message']+"</div>";
-                               
-                                $(".chat-container").append(chat_el);
-                            };
-                            
-                           
-                            // $(".chat-container").scrollTop($(".chat-container").prop('scrollHeight'));
-                        },
-                        // если ошибка, то
-                        error: function (response) {
-                            // предупредим об ошибке
-                            console.log(response.responseJSON.errors)
-                        }
-                    });
-                    
-                }//конец updateMessages
-                function scrollDown(){
-                    $(".chat-container").scrollTop($(".chat-container").prop('scrollHeight'));
-                }
-                updateMessages();
-                setTimeout(scrollDown,1000)
-                setInterval(updateMessages,1000,2000)
-                // $(".refresh-btn").click(updateMessages);
-
-            });
-
-        </script> -->

@@ -27,7 +27,7 @@ urlpatterns = [
 
 	path('tour/', tour_view, name='tour'),
 	path('favourite/', FavouriteView.as_view(), name='favourite'),
-	path('birth-day/', birth_day, name='birth_day'),
+	path('birth-day/', birth_day, name='birth-day'),
 	path('family/', family, name='family'),
 
 	path('interest/', send_interest, name='interest'),

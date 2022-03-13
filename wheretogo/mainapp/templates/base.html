@@ -365,22 +365,41 @@
 
                 <div class="tinder">
                     <div class="tinder--status">
-                      <i class="fa fa-remove diz"><p>Не интересно</p></i>
-                      <i class="fa fa-check like"><p>Интересно</p></i>
+                      <i class="fa fa-remove"><p>Не интересно</p></i>
+                      <i class="fa fa-check"><p>Интересно</p></i>
                       <i class="fa fa-bookmark"></i>
                     </div>
                   
                     <div class="tinder--cards">
-
-                            <!-- место для карточек -->
-                            <div class="tinder--card">
-                            <img src="https://via.placeholder.com/150/">
-                            <h3>Demo card 1</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
-                            
-                            </div>
+                      <div class="tinder--card">
+                        <img src="https://via.placeholder.com/150/">
+                        <h3>Demo card 1</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
+                        
+                      </div>
+                      <div class="tinder--card">
+                        <img src="https://via.placeholder.com/150/">
+                        <h3>Demo card 2</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, iste.</p>
+                      </div>
+                      <div class="tinder--card">
+                        <img src="https://via.placeholder.com/150/">
+                        <h3>Demo card 3</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, quam.</p>
+                      </div>
+                      <div class="tinder--card">
+                        <img src="https://via.placeholder.com/150/">
+                        <h3>Demo card 4</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, iste!</p>
+                      </div>
+                      <div class="tinder--card">
+                        <img src="https://via.placeholder.com/150/">
+                        <h3>Demo card 5</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, perferendis?</p>
+                      </div>
+            
                     </div>
-                    <input type="button" name="" onclick="generate_cart()" value="btn">
+                  
                 <div class="show-like">
                             <p>Мероприятие добавлено в избранное!</p>
                         </div>
@@ -416,6 +435,11 @@
     <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
     <script>
         'use strict';
+
+function cardAdd(){
+    
+}
+
 
 var tinderContainer = document.querySelector('.tinder');
 var allCards = document.querySelectorAll('.tinder--card');
@@ -619,8 +643,7 @@ love.addEventListener('click', loveListener);
                     let el = "<div class='tinder--card'><img src='https://via.placeholder.com/150/'><h3>Demo card 1</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p></div>" 
                     $(".tinder--cards").append(el);
                 }
-                generate_cart()
-                generate_cart()
+
 // ajax
 
     </script>

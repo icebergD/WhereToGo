@@ -371,35 +371,16 @@
                     </div>
                   
                     <div class="tinder--cards">
-                      <div class="tinder--card">
-                        <img src="https://via.placeholder.com/150/">
-                        <h3>Demo card 1</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
-                        
-                      </div>
-                      <div class="tinder--card">
-                        <img src="https://via.placeholder.com/150/">
-                        <h3>Demo card 2</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, iste.</p>
-                      </div>
-                      <div class="tinder--card">
-                        <img src="https://via.placeholder.com/150/">
-                        <h3>Demo card 3</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, quam.</p>
-                      </div>
-                      <div class="tinder--card">
-                        <img src="https://via.placeholder.com/150/">
-                        <h3>Demo card 4</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, iste!</p>
-                      </div>
-                      <div class="tinder--card">
-                        <img src="https://via.placeholder.com/150/">
-                        <h3>Demo card 5</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, perferendis?</p>
-                      </div>
-            
+
+                            <!-- место для карточек -->
+                            <div class="tinder--card">
+                            <img src="https://via.placeholder.com/150/">
+                            <h3>Demo card 1</h3>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
+                            
+                            </div>
                     </div>
-                  
+                    <input type="button" name="" onclick="generate_cart()" value="btn">
                 <div class="show-like">
                             <p>Мероприятие добавлено в избранное!</p>
                         </div>
@@ -544,6 +525,104 @@ var loveListener = createButtonListener(true);
 
 nope.addEventListener('click', nopeListener);
 love.addEventListener('click', loveListener);
+
+
+
+
+// ajax
+                function getCookie(name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie != '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = jQuery.trim(cookies[i]);
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+                var csrftoken = getCookie('csrftoken');
+
+                function send_interest(slug){
+                    // создаем AJAX-вызов
+                    $.ajax({
+                        data: {'csrfmiddlewaretoken' : csrftoken , 'slug': slug},
+                        method: "POST",
+                        dataType: 'json',
+                        url: "{% url 'interest' %}",
+                        success: function (response) { // если успешно, то
+                            var data = response.response;
+                            console.log(data)
+                         
+                        },
+                        error: function (response) { console.log(response.responseJSON.errors)}// предупредим об ошибке
+                    });
+                }
+
+                function get_recomendation(){
+                    // создаем AJAX-вызов
+                    $.ajax({
+                        data: {'csrfmiddlewaretoken' : csrftoken},
+                        method: "POST",
+                        dataType: 'json',
+                        url: "{% url 'recomentation' %}",
+                        success: function (response) {// если успешно, то
+                            let data = response.response;
+                            // console.log(data[0]['title'])
+                            // data[0]['description']
+                            // data[0]['geo']
+                            // data[0]['price']
+                            // data[0]['time_start_work']
+                            // data[0]['time_stop_work']
+                            // let el = "<img src="+data[0]['image']+">";
+                            return data;
+                        
+                        },
+                        error: function (response) { console.log(response.responseJSON.errors)}// предупредим об ошибке
+                    });
+                }
+
+                function send_favourite(slug){
+                    // создаем AJAX-вызов
+                    $.ajax({
+                        data: {'csrfmiddlewaretoken' : csrftoken, 'slug': slug},
+                        method: "POST",
+                        dataType: 'json',
+                        url: "{% url 'send_favourite' %}",
+                        success: function (response) {// если успешно, то
+                            var data = response.response;
+                        },
+                        error: function (response) { console.log(response.responseJSON.errors)}// предупредим об ошибке
+                    });
+                }
+
+                function generate_cart(){
+                    // let data = get_recomendation()
+
+                    // data[0]['title']
+                    // data[0]['description']
+                    // data[0]['geo']
+                    // data[0]['price']
+                    // data[0]['time_start_work']
+                    // data[0]['time_stop_work']
+                    // let el = "<img src="+data[0]['image']+">";
+                    
+                    // let el = "<div class='tinder--card'>"
+                    // el+="<img src='"+data[0]['image']+"'>"
+                    // el+="<h3>"+data[0]['title']+"</h3>"
+                    // el+="<p>"+data[0]['description'].substr(1, 200)+"</p>"
+                    // el+="</div>"
+                    let el = "<div class='tinder--card'><img src='https://via.placeholder.com/150/'><h3>Demo card 1</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p></div>" 
+                    $(".tinder--cards").append(el);
+                }
+                generate_cart()
+                generate_cart()
+// ajax
+
     </script>
     </body>
    

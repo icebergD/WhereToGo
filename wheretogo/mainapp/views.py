@@ -189,15 +189,18 @@ def tour_view(request):
 	return render(request,'tour.html',context)
 
 
-def profil_view(request):
+def birth_day(request):
 	context = {
 			'v': 's',
 	}
-	return render(request,'profile.html',context)
+	return render(request,'birth-day.html',context)
+
+def family(request):
+	context = {
+			'v': 's',
+	}
+	return render(request,'family.html',context)
 	
-
-
-
 
 
 

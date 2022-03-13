@@ -6,31 +6,43 @@
     
     .news-list{
         background: #fff;
-        height: 300px;
+        
         width: 500px;
         margin: 20px;
         border-radius: 10px;
-        padding: 10px;
+        padding: 30px;
+
     }
     .news-content{
         display: flex;
         justify-content: center;
     }
+    .news-list a{
+        text-decoration: none;
+        color: black;
+    }
+    .news-list img{
+        width: 100%;
+    }
+    .news-list h2{
+        text-align: center;
+        padding: 10px;
+    }
 </style>
+
     {% for nl in new_list %}
         <div class="news-content">
             <div class="news-list">
+                <a href="{% url 'organization_detail' slug=nl.slug %}">
                  <!-- начало карточки -->
-                <a href="{% url 'organization_detail' slug=nl.slug %}">link</a>
-                <img width="100px" height="100px" src="{{ nl.image.url }}"/>
-                <div class="title_news">{{ nl.title }}</div>
-                <div class="desc">{{ nl.description }}</div>
-                
+                    <img src="{{ nl.image.url }}"/>
+                    <h2 class="title_news">{{ nl.title }}</h2>
+                    <div class="desc">{{ nl.description }}</div>
+                </a>
                 <!-- конец карточки -->
             </div>
         </div>
-        
-       
+
 
     {% endfor %}
 

@@ -2,20 +2,67 @@
 {% block title %}favourites{% endblock %}
 {% block content %}
 <!-- начало контента -->
+<style>
+    
+    .fav-list{
+        background: #fff;
+        
+        width: 500px;
+        margin: 20px;
+        border-radius: 10px;
+        padding: 30px;
+
+    }
+    .fav-content{
+        display: flex;
+        justify-content: center;
+    }
+    .fav-list a{
+        text-decoration: none;
+        color: black;
+    }
+    .fav-list img{
+        width: 100%;
+    }
+    .fav-list h2{
+        text-align: center;
+        padding: 10px;
+    }
+</style>
+
 
     {% for fl in favourite_list %}
         <!-- начало карточки -->
-        <a href="{% url 'organization_detail' slug=fl.slug %}">link</a>
-        <img width="100px" height="100px" src="{{ fl.image.url }}"/>
-        <div>{{ fl.title }}</div>
-        <div>{{ fl.description }}</div>
-        <div>{{ fl.geo }}</div>
-        <div>{{ fl.price }} сум</div>
-        <div>время работы от {{ fl.time_start_work }} до {{ fl.time_stop_work }}</div>
+        <div class="fav-content">
+            <div class="fav-list">
+                <a href="{% url 'organization_detail' slug=fl.slug %}">
+                    <img src="{{ fl.image.url }}"/>
+                    <div>{{ fl.title }}</div>
+                    <div>{{ fl.description }}</div>
+                </a>
+            </div>
+        </div>
+        
         <!-- конец карточки -->
 
     {% endfor %}
  
+
+
+
+
+    {% for nl in new_list %}
+        
+
+
+    {% endfor %}
+
+<!-- конец контента -->
+
+
+
+
+
 
 <!-- конец контента -->
 {% endblock %}

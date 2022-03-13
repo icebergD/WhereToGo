@@ -2,17 +2,34 @@
 {% block title %}news{% endblock %}
 {% block content %}
 <!-- начало контента -->
-
+<style>
+    
+    .news-list{
+        background: #fff;
+        height: 300px;
+        width: 500px;
+        margin: 20px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .news-content{
+        display: flex;
+        justify-content: center;
+    }
+</style>
     {% for nl in new_list %}
-        <div class="news-list">
-             <!-- начало карточки -->
-        <a href="{% url 'organization_detail' slug=nl.slug %}">link</a>
-        <img width="100px" height="100px" src="{{ nl.image.url }}"/>
-        <div class="title_news">{{ nl.title }}</div>
-        <div class="desc">{{ nl.description }}</div>
-        
-        <!-- конец карточки -->
+        <div class="news-content">
+            <div class="news-list">
+                 <!-- начало карточки -->
+                <a href="{% url 'organization_detail' slug=nl.slug %}">link</a>
+                <img width="100px" height="100px" src="{{ nl.image.url }}"/>
+                <div class="title_news">{{ nl.title }}</div>
+                <div class="desc">{{ nl.description }}</div>
+                
+                <!-- конец карточки -->
+            </div>
         </div>
+        
        
 
     {% endfor %}

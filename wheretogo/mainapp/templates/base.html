@@ -340,15 +340,29 @@
                   
                     <div class="tinder--cards">
 
-                            <!-- место для карточек -->
+                            <!-- место для карточек  -->
                             <div class="tinder--card">
-                            <img src="https://via.placeholder.com/150/">
-                            <h3>Demo card 1</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
-                            
+                                <img src="https://i.ibb.co/tK99t8C/0-1-2.jpg">
+                                <h3>Demo card 1</h3>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
                             </div>
+
+                            <!-- место для карточек  -->
+                            <div class="tinder--card">
+                                <img src="https://via.placeholder.com/150/">
+                                <h3>Demo card 1</h3>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
+                            </div>
+
+                            <!-- место для карточек  -->
+                            <div class="tinder--card">
+                                <img src="https://via.placeholder.com/150/">
+                                <h3>Demo card 1</h3>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
+                            </div>
+
+
                     </div>
-                    <input type="button" name="" onclick="generate_cart()" value="btn">
                 <div class="show-like">
                             <p>Мероприятие добавлено в избранное!</p>
                         </div>
@@ -367,7 +381,7 @@
 
             </div>
             <div class="footer">
-                <!-- Содержимое нижнего блока -->
+                <!-- Содержимое нижнего блока-->
                 <div class="footer_items">
 
                     <div class="item"><a href="{% url 'news' %}"><div class="img-item">
@@ -383,13 +397,9 @@
 
     <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
     <script>
-        'use strict';
-
-function cardAdd(){
+        
+function run() {
     
-}
-
-
 var tinderContainer = document.querySelector('.tinder');
 var allCards = document.querySelectorAll('.tinder--card');
 var showLike = document.querySelector('.show-like');
@@ -498,9 +508,9 @@ var loveListener = createButtonListener(true);
 
 nope.addEventListener('click', nopeListener);
 love.addEventListener('click', loveListener);
+                
 
-
-
+}
 
 // ajax
                 function getCookie(name) {
@@ -572,29 +582,30 @@ love.addEventListener('click', loveListener);
                         error: function (response) { console.log(response.responseJSON.errors)}// предупредим об ошибке
                     });
                 }
-
-                function generate_cart(){
-                    // let data = get_recomendation()
-
-                    // data[0]['title']
-                    // data[0]['description']
-                    // data[0]['geo']
-                    // data[0]['price']
-                    // data[0]['time_start_work']
-                    // data[0]['time_stop_work']
-                    // let el = "<img src="+data[0]['image']+">";
-                    
-                    // let el = "<div class='tinder--card'>"
-                    // el+="<img src='"+data[0]['image']+"'>"
-                    // el+="<h3>"+data[0]['title']+"</h3>"
-                    // el+="<p>"+data[0]['description'].substr(1, 200)+"</p>"
-                    // el+="</div>"
-                    let el = "<div class='tinder--card'><img src='https://via.placeholder.com/150/'><h3>Demo card 1</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p></div>" 
-                    $(".tinder--cards").append(el);
-                }
-
 // ajax
+// function generate_cart(){
+//                     let data = get_recomendation()
+//                     console.log(data[0]['title'])
+//                     // data[0]['title']
+//                     // data[0]['description']
+//                     // data[0]['geo']
+//                     // data[0]['price']
+//                     // data[0]['time_start_work']
+//                     // data[0]['time_stop_work']
+//                     // let el = "<img src="+data[0]['image']+">";
+                    
+//                     // let el = "<div class='tinder--card'>"
+//                     // el+="<img src='"+data[0]['image']+"'>"
+//                     // el+="<h3>"+data[0]['title']+"</h3>"
+//                     // el+="<p>"+data[0]['description'].substr(1, 200)+"</p>"
+//                     // el+="</div>"
+//                     let el = "<div class='tinder--card'><img src='https://via.placeholder.com/150/'><h3>Demo card 1</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p></div>" 
+//                     $(".tinder--cards").append(el);
+//                 }
 
+run()
+
+ 
     </script>
     </body>
    

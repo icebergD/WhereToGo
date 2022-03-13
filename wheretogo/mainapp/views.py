@@ -65,6 +65,7 @@ def send_interest(request):
 					food=n_data.first().food + data.first().food/10
 
 				)
+				
 			else:
 				return JsonResponse({'response': "error"})
 

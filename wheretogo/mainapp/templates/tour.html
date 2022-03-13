@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Туры{% endblock %}
+{% block content %}
+
+<div class="tours">
+   <div class="tours-category">
+       <div class="tours-category-item item1">
+            <a href="{% url 'birth-day' %}">
+             <div class="tours-category-title">
+                    <h3>День рождения</h3>
+
+             </div>
+             </a>
+       </div>
+       <div class="tours-category-item item2">
+           <a href="{% url 'family' %}">
+            <div class="tours-category-title">
+                <h3>Для семьи</h3>
+            </div>
+            </a>
+       </div>
+   </div>
+</div>
+
+{% endblock %}

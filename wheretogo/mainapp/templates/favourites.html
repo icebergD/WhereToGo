@@ -28,6 +28,13 @@
         text-align: center;
         padding: 10px;
     }
+    .fav-fav{
+        
+    }
+    .fav-fav img{
+        height: 30px;
+        width: 30px;
+    }
 </style>
 
 
@@ -37,7 +44,10 @@
             <div class="fav-list">
                 <a href="{% url 'organization_detail' slug=fl.slug %}">
                     <img src="{{ fl.image.url }}"/>
+                    <div class="fav-fav"><img src="https://i.ibb.co/rvPRPXn/icons8-64.png"></div>
+                    
                     <h2 class="title_news">{{ fl.title }}</h2>
+                    
                     <div class="desc">{{ fl.description }}</div>
                 </a>
             </div>

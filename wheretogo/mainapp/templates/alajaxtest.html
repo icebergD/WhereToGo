@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<title></title>
+</head>
+<body>
+
+
+
+rrr
+
+
+
+
+
+
+
+	<input type="button" name="" onclick="send_interest('CityZone')" value="btn">
+
+
+
+
+
+
+
+
+
+		<script type="text/javascript">
+
+                function getCookie(name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie != '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = jQuery.trim(cookies[i]);
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+                var csrftoken = getCookie('csrftoken');
+
+                function send_interest(slug){
+                    // создаем AJAX-вызов
+                    $.ajax({
+                        data: {'csrfmiddlewaretoken' : csrftoken , 'slug': slug},
+                        method: "POST",
+                        dataType: 'json',
+                        url: "{% url 'interest' %}",
+                        success: function (response) { // если успешно, то
+                            var data = response.response;
+                            console.log(data)
+                         
+                        },
+                        error: function (response) { console.log(response.responseJSON.errors)}// предупредим об ошибке
+                    });
+                }
+
+                function get_recomendation(){
+                    // создаем AJAX-вызов
+                    $.ajax({
+                        data: {'csrfmiddlewaretoken' : csrftoken},
+                        method: "POST",
+                        dataType: 'json',
+                        url: "{% url 'recomentation' %}",
+                        success: function (response) {// если успешно, то
+                            var data = response.response;
+                            console.log(data)
+                        
+                        },
+                        error: function (response) { console.log(response.responseJSON.errors)}// предупредим об ошибке
+                    });
+                }
+
+                
+
+
+        </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

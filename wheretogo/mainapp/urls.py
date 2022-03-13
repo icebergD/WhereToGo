@@ -7,6 +7,8 @@ from .views import (
 	user_logout,
 	OrganizationDetailView,
 	NewsView,
+	send_interest,
+	get_recomendation
 	) 
 
 
@@ -17,4 +19,7 @@ urlpatterns = [
 	path('register/', user_register, name='register'),
 	path('organization-detail/<str:slug>/', OrganizationDetailView.as_view(), name='organization_detail'),
 	path('news/', NewsView.as_view(), name='news'),
+	path('interest/', send_interest, name='interest'),
+	path('recomentation/', get_recomendation, name='recomentation'),
+	
 ]

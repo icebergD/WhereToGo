@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import DetailView, View, CreateView
@@ -16,7 +16,12 @@ from .forms import UserLoginForm, UserRegistrationForm
 from .models import Organization, Like, OrganizationHashtag, UserHashtag
 
 def hello(request):
-	return HttpResponse("Hello world")
+	# return HttpResponse("Hello world")
+	context = {
+			'authed': 'authed',
+			'username': "sfsd"
+		}
+	return render(request,'alajaxtest.html',context)
 
 
 class BaseView(View):
@@ -31,6 +36,68 @@ class BaseView(View):
 
 		# код для свайпа
 		return render(request,'base.html',context)
+
+
+# def send_liled(request):
+
+
+def send_interest(request):
+	if request.method == 'POST':
+		if 'slug' in request.POST:
+			print(request.POST.get('slug'))
+			organization = Organization.objects.filter(slug=request.POST['slug']).first()
+			if organization:
+				data = OrganizationHashtag.objects.filter(organization_id=organization)
+
+				n_data = UserHashtag.objects.filter(user=request.user)
+				UserHashtag.objects.filter(user=request.user).update(
+					sport=n_data.first().sport + data.first().sport/10,
+					art=n_data.first().art + data.first().art/10,
+					health=n_data.first().health + data.first().health/10,
+					alone=n_data.first().alone + data.first().alone/10,
+					withcompany=n_data.first().withcompany + data.first().withcompany/10,
+					adult=n_data.first().adult + data.first().adult/10,
+					children=n_data.first().children + data.first().children/10,
+					male=n_data.first().male + data.first().male/10,
+					female=n_data.first().female + data.first().female/10,
+					active=n_data.first().active + data.first().active/10,
+					passiv=n_data.first().passiv + data.first().passiv/10,
+					food=n_data.first().food + data.first().food/10
+
+				)
+			else:
+				return JsonResponse({'response': "error"})
+
+	return JsonResponse({'response': "got"})
+
+def get_recomendation(request):
+	if request.method == 'POST':
+		item = "works!!" # Organization.objects.all().order_by('-creation_date')[:30]
+
+		context = {
+			'response': item	
+		}
+			
+		
+		return JsonResponse(context)
+
+
+# def recomendations(request):
+#     item = Organization.objects.all().order_by('-creation_date')[:30]
+#     context = {
+#         'item': item
+#     }
+#     return JsonResponse(context)
+
+# class Recomendations(View):
+# 	def get(self, request, *args, **kwargs):
+# 		item = Organization.objects.all().order_by('-creation_date')[:30]
+# 		context = {
+# 			'item': item,
+# 		}
+# 		return render(request,'news.html',context)
+
+
 
 
 class NewsView(View):
@@ -99,6 +166,11 @@ def user_register(request):
 			user = User.objects.create_user(username=cd['username'], first_name=cd['first_name'], email=cd['email'], password=cd['password'])
 			user.save()
             
+			uh = UserHashtag.objects.create(
+				user=user
+			)
+			uh.save()
+
 			return HttpResponseRedirect('/login/')
             # user = authenticate(username=cd['username'], password=cd['password'])
             # if user is not None:

@@ -12,7 +12,7 @@ class Organization(models.Model):
 	title = models.CharField(max_length=255, verbose_name='Наименование')
 	slug = models.SlugField(unique=True)
 	description = models.TextField(verbose_name='Описание', null=True)
-	geo = models.CharField(max_length=255, verbose_name='Геопозиция')
+	geo = models.CharField(default='https://goo.gl/maps/d1bRXbvRDfRN7NfB8', max_length=255, verbose_name='Геопозиция')
 	price = models.DecimalField(max_digits=11, decimal_places=2, verbose_name='Средний чек')
 	time_start_work = models.TimeField(verbose_name='Время начала работы')
 	time_stop_work = models.TimeField(verbose_name='Время конца работы')
@@ -28,7 +28,7 @@ class Like(models.Model):
 	organization_id = models.ForeignKey(Organization, verbose_name='Понравившаяся организация', on_delete=models.CASCADE)
 
 	def __str__(self):
-		return '{} : {}'.format(self.user.name,self.liked_company.title)
+		return '{}: {}'.format(self.user.first_name,self.organization_id.title)
 
 
 
@@ -47,6 +47,7 @@ class OrganizationHashtag(models.Model):
 	female = models.PositiveIntegerField(verbose_name='женщина', default=1, validators=[MaxValueValidator(100), MinValueValidator(1)])
 	active = models.PositiveIntegerField(verbose_name='активный отдых', default=1, validators=[MaxValueValidator(100), MinValueValidator(1)])
 	passiv = models.PositiveIntegerField(verbose_name='пассивный отдых', default=1, validators=[MaxValueValidator(100), MinValueValidator(1)])
+	food = models.PositiveIntegerField(verbose_name='еда', default=1, validators=[MaxValueValidator(100), MinValueValidator(1)])
 
 	def __str__(self):
 			return str(self.organization_id.title)
@@ -65,9 +66,10 @@ class UserHashtag(models.Model):
 	female = models.PositiveIntegerField(verbose_name='женщина', default=1, validators=[MaxValueValidator(100), MinValueValidator(1)])
 	active = models.PositiveIntegerField(verbose_name='активный отдых', default=1, validators=[MaxValueValidator(100), MinValueValidator(1)])
 	passiv = models.PositiveIntegerField(verbose_name='пассивный отдых', default=1, validators=[MaxValueValidator(100), MinValueValidator(1)])
+	food = models.PositiveIntegerField(verbose_name='еда', default=1, validators=[MaxValueValidator(100), MinValueValidator(1)])
 
 	def __str__(self):
-			return str(self.user.name)
+			return str(self.user)
 
 
 

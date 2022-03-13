@@ -26,7 +26,7 @@
                 margin: 0;
                 font-family: 'Montserrat', sans-serif;
                 background: #ffe033a3;
-                
+                overflow: hidden;
             }
 
             h1, h2, h3, h4, h5, h6, p {
@@ -136,38 +136,6 @@
                 width: 20px;
                 height: 20px;
             }
-
-
-            .tours-category-item {
-                width: 250px;
-                height: 100px;
-                background: white;
-                border-radius: 10px;
-                margin-top: 30px;
-            }
-
-
-            .tours-category {
-                
-            }
-
-            .tours-category-item {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .tours {
-                display: flex;
-                justify-content: center;
-                margin-top: 120px;
-            }
-
-            .tours-category {
-                
-            }
-
-
 
 
            /* Новые стили карточек*/
@@ -365,68 +333,24 @@
 
                 <div class="tinder">
                     <div class="tinder--status">
-                      <i class="fa fa-remove"><p>Не интересно</p></i>
-                      <i class="fa fa-check"><p>Интересно</p></i>
+                      <i class="fa fa-remove diz"><p>Не интересно</p></i>
+                      <i class="fa fa-check like"><p>Интересно</p></i>
                       <i class="fa fa-bookmark"></i>
                     </div>
                   
                     <div class="tinder--cards">
-<<<<<<< HEAD
-
-                            <!-- место для карточек  -->
-                            <div class="tinder--card">
-                                <img src="https://i.ibb.co/tK99t8C/0-1-2.jpg">
-                                <h3>Demo card 1</h3>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
-                            </div>
-
-                            <!-- место для карточек  -->
-                            <div class="tinder--card">
-                                <img src="https://via.placeholder.com/150/">
-                                <h3>Demo card 1</h3>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
-                            </div>
-
-                            <!-- место для карточек  -->
-                            <div class="tinder--card">
-                                <img src="https://via.placeholder.com/150/">
-                                <h3>Demo card 1</h3>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
-                            </div>
 
 
-                    </div>
-=======
                       <div class="tinder--card">
                         <img src="https://via.placeholder.com/150/">
                         <h3>Demo card 1</h3>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p>
-                        
                       </div>
-                      <div class="tinder--card">
-                        <img src="https://via.placeholder.com/150/">
-                        <h3>Demo card 2</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, iste.</p>
-                      </div>
-                      <div class="tinder--card">
-                        <img src="https://via.placeholder.com/150/">
-                        <h3>Demo card 3</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, quam.</p>
-                      </div>
-                      <div class="tinder--card">
-                        <img src="https://via.placeholder.com/150/">
-                        <h3>Demo card 4</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, iste!</p>
-                      </div>
-                      <div class="tinder--card">
-                        <img src="https://via.placeholder.com/150/">
-                        <h3>Demo card 5</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, perferendis?</p>
-                      </div>
+                      
+
             
                     </div>
                   
->>>>>>> 1492c5193c5baa91d479e91b91516eb4e221e4cb
                 <div class="show-like">
                             <p>Мероприятие добавлено в избранное!</p>
                         </div>
@@ -445,7 +369,7 @@
 
             </div>
             <div class="footer">
-                <!-- Содержимое нижнего блока-->
+                <!-- Содержимое нижнего блока -->
                 <div class="footer_items">
 
                     <div class="item"><a href="{% url 'news' %}"><div class="img-item">
@@ -461,9 +385,8 @@
 
     <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
     <script>
-        
-function run() {
-    
+        'use strict';
+
 var tinderContainer = document.querySelector('.tinder');
 var allCards = document.querySelectorAll('.tinder--card');
 var showLike = document.querySelector('.show-like');
@@ -572,104 +495,6 @@ var loveListener = createButtonListener(true);
 
 nope.addEventListener('click', nopeListener);
 love.addEventListener('click', loveListener);
-                
-
-}
-
-// ajax
-                function getCookie(name) {
-                    var cookieValue = null;
-                    if (document.cookie && document.cookie != '') {
-                        var cookies = document.cookie.split(';');
-                        for (var i = 0; i < cookies.length; i++) {
-                            var cookie = jQuery.trim(cookies[i]);
-                            // Does this cookie string begin with the name we want?
-                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                break;
-                            }
-                        }
-                    }
-                    return cookieValue;
-                }
-                var csrftoken = getCookie('csrftoken');
-
-                function send_interest(slug){
-                    // создаем AJAX-вызов
-                    $.ajax({
-                        data: {'csrfmiddlewaretoken' : csrftoken , 'slug': slug},
-                        method: "POST",
-                        dataType: 'json',
-                        url: "{% url 'interest' %}",
-                        success: function (response) { // если успешно, то
-                            var data = response.response;
-                            console.log(data)
-                         
-                        },
-                        error: function (response) { console.log(response.responseJSON.errors)}// предупредим об ошибке
-                    });
-                }
-
-                function get_recomendation(){
-                    // создаем AJAX-вызов
-                    $.ajax({
-                        data: {'csrfmiddlewaretoken' : csrftoken},
-                        method: "POST",
-                        dataType: 'json',
-                        url: "{% url 'recomentation' %}",
-                        success: function (response) {// если успешно, то
-                            let data = response.response;
-                            // console.log(data[0]['title'])
-                            // data[0]['description']
-                            // data[0]['geo']
-                            // data[0]['price']
-                            // data[0]['time_start_work']
-                            // data[0]['time_stop_work']
-                            // let el = "<img src="+data[0]['image']+">";
-                            return data;
-                        
-                        },
-                        error: function (response) { console.log(response.responseJSON.errors)}// предупредим об ошибке
-                    });
-                }
-
-                function send_favourite(slug){
-                    // создаем AJAX-вызов
-                    $.ajax({
-                        data: {'csrfmiddlewaretoken' : csrftoken, 'slug': slug},
-                        method: "POST",
-                        dataType: 'json',
-                        url: "{% url 'send_favourite' %}",
-                        success: function (response) {// если успешно, то
-                            var data = response.response;
-                        },
-                        error: function (response) { console.log(response.responseJSON.errors)}// предупредим об ошибке
-                    });
-                }
-// ajax
-// function generate_cart(){
-//                     let data = get_recomendation()
-//                     console.log(data[0]['title'])
-//                     // data[0]['title']
-//                     // data[0]['description']
-//                     // data[0]['geo']
-//                     // data[0]['price']
-//                     // data[0]['time_start_work']
-//                     // data[0]['time_stop_work']
-//                     // let el = "<img src="+data[0]['image']+">";
-                    
-//                     // let el = "<div class='tinder--card'>"
-//                     // el+="<img src='"+data[0]['image']+"'>"
-//                     // el+="<h3>"+data[0]['title']+"</h3>"
-//                     // el+="<p>"+data[0]['description'].substr(1, 200)+"</p>"
-//                     // el+="</div>"
-//                     let el = "<div class='tinder--card'><img src='https://via.placeholder.com/150/'><h3>Demo card 1</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat, soluta!</p></div>" 
-//                     $(".tinder--cards").append(el);
-//                 }
-
-run()
-
- 
     </script>
     </body>
    

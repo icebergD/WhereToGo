@@ -37,8 +37,8 @@
             <div class="fav-list">
                 <a href="{% url 'organization_detail' slug=fl.slug %}">
                     <img src="{{ fl.image.url }}"/>
-                    <div>{{ fl.title }}</div>
-                    <div>{{ fl.description }}</div>
+                    <h2 class="title_news">{{ fl.title }}</h2>
+                    <div class="desc">{{ fl.description }}</div>
                 </a>
             </div>
         </div>

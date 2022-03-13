@@ -65,7 +65,7 @@ def send_interest(request):
 					food=n_data.first().food + data.first().food/10
 
 				)
-				
+
 			else:
 				return JsonResponse({'response': "error"})
 
@@ -73,7 +73,7 @@ def send_interest(request):
 
 def get_recomendation(request):
 	if request.method == 'POST':
-		item = "works!!" # Organization.objects.all().order_by('-creation_date')[:30]
+		item = Organization.objects.all().order_by('-creation_date')[:30]
 
 		context = {
 			'response': item	
@@ -118,6 +118,30 @@ class OrganizationDetailView(View):
 			'organization_info': organization_info,
 		}
 		return render(request,'card.html',context)
+
+
+def tour_view(request):
+	context = {
+			'v': 's',
+	}
+	return render(request,'tour.html',context)
+
+def favourite_view(request):
+	context = {
+			'v': 's',
+	}
+	return render(request,'favourites.html',context)
+
+def profil_view(request):
+	context = {
+			'v': 's',
+	}
+	return render(request,'profile.html',context)
+	
+
+
+
+
 
 
 

@@ -19,6 +19,11 @@ urlpatterns = [
 	path('register/', user_register, name='register'),
 	path('organization-detail/<str:slug>/', OrganizationDetailView.as_view(), name='organization_detail'),
 	path('news/', NewsView.as_view(), name='news'),
+	
+	path('tur/', NewsView.as_view(), name='tur'),
+	path('favourite/', NewsView.as_view(), name='favourite'),
+	path('profil/', NewsView.as_view(), name='profil'),
+
 	path('interest/', send_interest, name='interest'),
 	path('recomentation/', get_recomendation, name='recomentation'),
 	

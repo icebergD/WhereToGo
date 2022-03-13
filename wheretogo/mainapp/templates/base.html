@@ -97,11 +97,11 @@
                 <!-- Содержимое нижнего блока -->
                 <div class="footer_items">
 
-                    <div class="item"><a href="/news">Лента</a></div>
-                    <div class="item"><a href="/recommendations">Ремоендация</a></div>
-                    <div class="item"><a href="/tour">Тур</a></div>
-                    <div class="item"><a href="/wheretogo/mainapp/templates/favourites.html">Избранное</a></div>
-                    <div class="item"><a href="/profile">Профиль</a></div>
+                    <div class="item"><a href="{% url 'news' %}">Лента</a></div>
+                    <div class="item"><a href="{% url 'base' %}">Ремоендация</a></div>
+                    <div class="item"><a href="{% url 'tur' %}">Тур</a></div>
+                    <div class="item"><a href="{% url 'favourite' %}">Избранное</a></div>
+                    <div class="item"><a href="{% url 'profil' %}">Профиль</a></div>
                 </div>
             </div>
         </div>

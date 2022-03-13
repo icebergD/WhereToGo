@@ -11,8 +11,9 @@ from .views import (
 	get_recomendation,
 	tour_view,
 	FavouriteView,
-	profil_view,
-	send_favourite
+	send_favourite,
+	birth_day,
+	family
 	) 
 
 
@@ -26,7 +27,8 @@ urlpatterns = [
 
 	path('tour/', tour_view, name='tour'),
 	path('favourite/', FavouriteView.as_view(), name='favourite'),
-	path('profil/', profil_view, name='profil'),
+	path('birth_day/', birth_day, name='birth_day'),
+	path('family/', family, name='family'),
 
 	path('interest/', send_interest, name='interest'),
 	path('recomentation/', get_recomendation, name='recomentation'),

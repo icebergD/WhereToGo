@@ -7,7 +7,7 @@
     .fav-list{
         background: #fff;
         
-        width: 500px;
+        width: 400px;
         margin: 20px;
         border-radius: 10px;
         padding: 30px;
@@ -27,7 +27,22 @@
     .fav-list h2{
         text-align: center;
         padding: 10px;
+
     }
+    .fav-list{
+        position: relative;
+    }
+    .fav-fav{
+        position: absolute;
+        right: 40px;
+        top: 230px;
+    }
+    .fav-fav img{
+        height: 60px;
+        width: 60px;
+        
+    }
+
 </style>
 
 
@@ -36,8 +51,11 @@
         <div class="fav-content">
             <div class="fav-list">
                 <a href="{% url 'organization_detail' slug=fl.slug %}">
-                    <img src="{{ fl.image.url }}"/>
+                    <img class="fav-img" src="{{ fl.image.url }}"/>
+                    <div class="fav-fav"><img src="https://i.ibb.co/rvPRPXn/icons8-64.png"></div>
+                    
                     <h2 class="title_news">{{ fl.title }}</h2>
+                    
                     <div class="desc">{{ fl.description }}</div>
                 </a>
             </div>

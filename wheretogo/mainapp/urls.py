@@ -10,8 +10,9 @@ from .views import (
 	send_interest,
 	get_recomendation,
 	tour_view,
-	favourite_view,
-	profil_view
+	FavouriteView,
+	profil_view,
+	send_favourite
 	) 
 
 
@@ -24,10 +25,12 @@ urlpatterns = [
 	path('news/', NewsView.as_view(), name='news'),
 
 	path('tour/', tour_view, name='tour'),
-	path('favourite/', favourite_view, name='favourite'),
+	path('favourite/', FavouriteView.as_view(), name='favourite'),
 	path('profil/', profil_view, name='profil'),
 
 	path('interest/', send_interest, name='interest'),
 	path('recomentation/', get_recomendation, name='recomentation'),
+	path('send-favourite/', send_favourite, name='send_favourite'),
+
 	
 ]

@@ -11,6 +11,10 @@ from django.urls import reverse
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.core import serializers
+from django.conf import settings
+
+import random
+
 
 from .forms import UserLoginForm, UserRegistrationForm
 from .models import Organization, Like, OrganizationHashtag, UserHashtag
@@ -38,13 +42,23 @@ class BaseView(View):
 		return render(request,'base.html',context)
 
 
-# def send_liled(request):
+
+def send_favourite(request):
+	if request.method == 'POST':
+		if 'slug' in request.POST:
+			organization = Organization.objects.filter(slug=request.POST['slug']).first()
+			if organization:
+				Like.objects.update_or_create(user=request.user, organization_id=organization)
+			else:
+				return JsonResponse({'response': "error"})
+
+	return JsonResponse({'response': "got"})
+
 
 
 def send_interest(request):
 	if request.method == 'POST':
 		if 'slug' in request.POST:
-			print(request.POST.get('slug'))
 			organization = Organization.objects.filter(slug=request.POST['slug']).first()
 			if organization:
 				data = OrganizationHashtag.objects.filter(organization_id=organization)
@@ -71,12 +85,48 @@ def send_interest(request):
 
 	return JsonResponse({'response': "got"})
 
+
 def get_recomendation(request):
 	if request.method == 'POST':
-		item = Organization.objects.all().order_by('-creation_date')[:30]
+		
+
+		n_data = UserHashtag.objects.filter(user=request.user)
+
+		d = {
+			'sport': n_data.first().sport, 
+			'art': n_data.first().art,
+			'health': n_data.first().health,
+			'alone': n_data.first().alone,
+			'withcompany': n_data.first().withcompany,
+			'adult': n_data.first().adult,
+			'children': n_data.first().children,
+			'male': n_data.first().male,
+			'female': n_data.first().female,
+			'active': n_data.first().active,
+			'passiv': n_data.first().passiv,
+			'food': n_data.first().food
+			}
+		sorted_tuple = sorted(d.items(), key=lambda x: x[1])
+		
+		r1 = random.randint(0, 12)
+		if r1 <= 4: # вероятность 5/13
+			items = list(OrganizationHashtag.objects.order_by('-'+str(sorted_tuple[-1][0])).values())
+			
+		elif 4 < r1 <= 8: # вероятность 4/13
+			items = list(OrganizationHashtag.objects.order_by('-'+str(sorted_tuple[-2][0])).values())
+
+		elif 8 < r1 <= 11: # вероятность 3/13
+			items = list(OrganizationHashtag.objects.order_by('-'+str(sorted_tuple[-3][0])).values())
+
+		elif 11 < r1 <= 12: # вероятность 1/13
+			items = list(OrganizationHashtag.objects.order_by('-'+str(sorted_tuple[-4][0])).values())
+		item = random.choice(items)
+		
+		recomended_organization = list(Organization.objects.filter(id=item['organization_id_id']).values())
+		recomended_organization[0]['image'] = str(settings.MEDIA_URL) + recomended_organization[0]['image']
 
 		context = {
-			'response': item	
+			'response': recomended_organization
 		}
 			
 		
@@ -99,6 +149,18 @@ def get_recomendation(request):
 # 		return render(request,'news.html',context)
 
 
+class FavouriteView(View):
+	def get(self, request, *args, **kwargs):
+		like_list = Like.objects.filter(user=request.user)
+		favourite_list = []
+
+		for i in like_list:
+			favourite_list += list(Organization.objects.filter(id=i.organization_id_id))
+
+		context = {
+			'favourite_list': favourite_list
+		}
+		return render(request,'favourites.html',context)
 
 
 class NewsView(View):
@@ -126,11 +188,6 @@ def tour_view(request):
 	}
 	return render(request,'tour.html',context)
 
-def favourite_view(request):
-	context = {
-			'v': 's',
-	}
-	return render(request,'favourites.html',context)
 
 def profil_view(request):
 	context = {

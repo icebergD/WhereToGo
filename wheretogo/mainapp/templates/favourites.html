@@ -1,12 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Избранное</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}favourites{% endblock %}
+{% block content %}
+<!-- начало контента -->
+
+    {% for fl in favourite_list %}
+        <!-- начало карточки -->
+        <a href="{% url 'organization_detail' slug=fl.slug %}">link</a>
+        <img width="100px" height="100px" src="{{ fl.image.url }}"/>
+        <div>{{ fl.title }}</div>
+        <div>{{ fl.description }}</div>
+        <div>{{ fl.geo }}</div>
+        <div>{{ fl.price }} сум</div>
+        <div>время работы от {{ fl.time_start_work }} до {{ fl.time_stop_work }}</div>
+        <!-- конец карточки -->
+
+    {% endfor %}
+ 
+
+<!-- конец контента -->
+{% endblock %}
